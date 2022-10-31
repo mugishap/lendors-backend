@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 
-const Customer = () => {
+const NewCar = () => {
 
   useEffect(() => {
     document.title = 'Drive | Home'
   }, [])
 
   return (
-    <div>Customer</div>
+    <div>NewCar</div>
   )
 }
 
-export default Customer
+export default NewCar

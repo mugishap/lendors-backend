@@ -1,22 +1,30 @@
 import React from 'react'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
-import Home from './Pages/Home/Home'
+import Home from './Pages/Home/Home.jsx'
+import Car from './Pages/Car/Car.jsx'
+import Requests from './Pages/Request/Requests.jsx'
+import Login from './Pages/Auth/Login.jsx'
+import Signup from './Pages/Auth/Signup.jsx'
+import Customer from './Pages/Profile/Customer.jsx'
+import Customers from './Pages/Profile/Customers.jsx'
+import NewCar from './Pages/Car/NewCar.jsx'
+import NotFound from './Pages/404/NotFound.jsx'
 
 const Pages = () => {
+   
     return (
         <div>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/car/:carId" element={<Home />} />
-                    <Route path="/car/new" element={<Home />} />
-                    <Route path="/car/requests" element={<Home />} />
-                    <Route path="/customer/:customerId" element={<Home />} />
-                    <Route path="/customers" element={<Home />} />
-                    <Route path="/auth/login" element={<Home />} />
-                    <Route path="/auth/signup" element={<Home />} />
-                    <Route path="/customers" element={<Home />} />
-
+                    <Route path="/car/:carId" element={<Car />} />
+                    <Route path="/car/new" element={<NewCar />} />
+                    <Route path="/car/requests" element={<Requests />} />
+                    <Route path="/customer/:customerId" element={<Customer />} />
+                    <Route path="/customers" element={<Customers />} />
+                    <Route path="/auth/login" element={<Login />} />
+                    <Route path="/auth/signup" element={<Signup />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
 

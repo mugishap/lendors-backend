@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 
-const Customer = () => {
+const NotFound = () => {
 
   useEffect(() => {
     document.title = 'Drive | Home'
   }, [])
 
   return (
-    <div>Customer</div>
+    <div>NotFound</div>
   )
 }
 
-export default Customer
+export default NotFound

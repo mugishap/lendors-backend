@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Requests = () => {
+
+    useEffect(() => {
+        document.title = 'Drive | Home'
+      }, [])
+
   return (
     <div>Requests</div>
   )
