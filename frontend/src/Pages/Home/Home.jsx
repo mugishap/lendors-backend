@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './../../Components/Navbar'
 
 const Home = () => {
 
@@ -7,7 +8,9 @@ const Home = () => {
   }, [])
 
   return (
-    <div>Home</div>
+    <div className='w-screen flex flex-col items-center justify-center h-fit bg-white'>
+<Navbar />
+    </div>
   )
 }
 

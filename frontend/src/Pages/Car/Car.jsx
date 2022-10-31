@@ -1,9 +1,20 @@
 import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 const Car = () => {
+  const { carId } = useParams()
+
+  const getCar = async () => {
+    const car = await fetch(`http://localhost:3001/car/${carId}`)
+  }
 
   useEffect(() => {
-    document.title = 'Drive | Home'
+    getCar()
+  }, [carId])
+
+
+  useEffect(() => {
+    document.title = ' | Home'
   }, [])
 
   return (

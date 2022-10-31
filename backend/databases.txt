@@ -1,0 +1,20 @@
+Models
+******************
+npx sequelize-cli model:generate --name Customer --attributes names:string,email:string,address:string,joined:string,telephone:string,role:string,password:string
+npx sequelize-cli model:generate --name Admin --attributes names:string,email:string,telephone:string,joined:string,role:string,password:string
+npx sequelize-cli model:generate --name Car --attributes name:string,brand:string,imageUrl:string,added:string,price:string,currency:string
+npx sequelize-cli model:generate --name Request --attributes customerId:string,carId:string,timeRequested:string,isAllowed:boolean
+******************
+
+
+
+Seeds
+******************
+npx sequelize-cli seed:generate --name admin
+npx sequelize-cli seed:generate --name car
+npx sequelize-cli seed:generate --name customer
+npx sequelize-cli seed:generate --name request
+
+->Execute seed file
+npx sequelize-cli db:seed:all
+
