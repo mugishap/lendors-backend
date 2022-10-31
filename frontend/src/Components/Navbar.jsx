@@ -1,19 +1,39 @@
 import React from 'react'
 import logo from './../assets/logo.png'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const Navbar = () => {
+
+  const [query, setQuery] = useState('')
+
   return (
-    <div className='w-screen shadow-lg flex items-center justify-around'>
+    <div className='w-screen py-3 shadow-lg flex items-center justify-around'>
       <div className='w-1/3 flex items-center justify-center'>
-        <img src={logo} alt="Navbar logo" />
+        <img className='w-16' src={logo} alt="Navbar logo" />
+        <span className='ml-3 text-xl font-bold'>Drive</span>
       </div>
       <div className='flex items-center justify-center w-1/3'>
         <ul className='flex'>
-          <li><Link></Link></li>
+          <li className='mx-4 text-lg font-poppins hover:text-drive-blue'>
+            <Link to={'/'}>Home</Link>
+          </li>
+          <li className='mx-4 text-lg font-poppins hover:text-drive-blue'>
+            <Link to={'/explore'}>Explore</Link>
+          </li>
+          <li className='mx-4 text-lg font-poppins hover:text-drive-blue'>
+            <Link to={`/customer/${'d'}`}>Account</Link>
+          </li>
+          <li className='mx-4 text-lg font-poppins hover:text-drive-blue'>
+            <Link to={'/settings'}>Settings</Link>
+          </li>
         </ul>
       </div>
-      <div className='flex items-center justify-center w-1/3'></div>
+      <div className='flex items-center justify-center w-1/3'>
+        <div className='flex items-center justify-center px-2 rounded-3xl border-2 border-drive-blue'>
+          <input type="text" value={query} onChange={(e) => { setQuery(e.target.value) }} placeholder='Search...' className='border-none rounded-xl outline-none font-poppins p-2' />
+        </div>
+      </div>
     </div>
   )
 }

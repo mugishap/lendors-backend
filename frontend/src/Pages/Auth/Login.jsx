@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Input } from '@mui/material'
+import IconButton from '@mui/material/IconButton';
+import logo from './../../assets/logo.png'
+import {Link} from 'react-router-dom'
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 
 const Login = () => {
 
@@ -35,13 +42,13 @@ const Login = () => {
     },
 
   ]
-  
-    const [background, setBackground] = useState(backgrounds[Math.floor(Math.random() * backgrounds.length)])
-    const [formData,setFormData]=useState({
-      email:"",
-      password:"",
-      showPassword:false
-    })
+
+  const [background, setBackground] = useState(backgrounds[Math.floor(Math.random() * backgrounds.length)])
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    showPassword: false
+  })
 
   setTimeout(() => {
     const random = Math.floor(Math.random() * backgrounds.length)
@@ -55,36 +62,79 @@ const Login = () => {
 
   // const { login } = useCustomers()
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault()
     const data = "D"
   }
 
+
+  const handleClickShowPassword = () => {
+    setFormData({
+      ...formData,
+      showPassword: !formData.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className='w-screen h-screen flex items-center justify-center'>
-      <div className='w-1/2 h-full relative flex items-center justify-center bg-no-repeat bg-cover' style={{ backgroundImage: `url('${background.url}')` }}>
-        <div className='w-full h-1/2 bg-gradient-to-t pb-12 from-black via-[#161616] to-transparent absolute bottom-0 left-0 right-0 flex items-end justify-center'>
+      <div className='w-1/2 h-full relative hidden md:flex items-center justify-center bg-no-repeat bg-cover' style={{ backgroundImage: `url('${background.url}')` }}>
+        <div className='w-full h-1/2 bg-gradient-to-t pb-12 from-black to-transparent absolute bottom-0 left-0 right-0 flex items-end justify-center'>
           <span className='text-3xl font-poppins text-white font-bold'>{background.text}</span>
         </div>
       </div>
       <div className='w-1/2 bg-white flex flex-col h-full items-center justify-center'>
-        <div className='rounded-2xl p-8 flex w-3/4 flex-col border-2 border-slate-200'>
-          <span className='font-poppins text-2xl w-full text-center font-semibold'>Welcome Back!</span>
-          <form className='flex w-full flex-col items-center justify-center' onSubmit={handleLogin}>
-          {/* <FormControl variant="standard">
-        <InputLabel htmlFor="input-with-icon-adornment">
-          With a start adornment
-        </InputLabel>
-        <Input
-          id="input-with-icon-adornment"
-          startAdornment={
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          }
-        />
-      </FormControl> */}
-      <button className='px-6 my-4 py-2 rounded text-white cursor-pointer bg-drive-blue font-poppins' >Login</button>
+        <div className='rounded-2xl p-8 flex w-8/12 flex-col items-center border-2 border-slate-200'>
+        <img src={logo} alt="" />
+          <span className='font-poppins text-2xl my-8 w-full text-center font-semibold'>Welcome Back!</span>
+          <form className='my-3 flex w-full flex-col items-center justify-center' onSubmit={handleLogin}>
+
+            <TextField
+              variant='outlined'
+              focused={true}
+              value={formData.email}
+              onChange={(e) => { setFormData({ ...formData, email: e.target.value }) }}
+              className="my-10 w-full"
+              label={'Email'}
+              type="email"
+            />
+            <div className='my-10 w-full'>
+
+
+            <FormControl className='w-full' focused={true} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+              size='medium'
+              id="outlined-adornment-password"
+              type={formData.showPassword ? 'text' : 'password'}
+              value={formData.password}
+              onChange={(e) => { setFormData(e.target.value) }}
+              endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                      >
+                      {formData.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+                />
+            </FormControl>
+                </div>
+
+            <button className='px-6 my-4 py-2 rounded text-white cursor-pointer bg-drive-blue font-poppins' >Login</button>
           </form>
+          <span className='font-poppins font-light flex items-center justify-center'>
+            <span>New to Drive? {" "}</span>&nbsp;
+            <Link className="text-drive-blue hover:underline cursor-pointer" to={'/auth/signup'}>Create Account</Link>
+          </span>
         </div>
       </div>
     </div>
