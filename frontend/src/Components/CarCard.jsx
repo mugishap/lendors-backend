@@ -26,10 +26,8 @@ const CarCard = (props) => {
               <FiHeart onClick={() => props.car.likes++} />
               <span className='font-light text-sm ml-2 text-slate-500'>{props.car.likes}</span>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   )

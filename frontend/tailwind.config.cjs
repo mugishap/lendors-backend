@@ -37,6 +37,7 @@ module.exports = {
       'display': ['Oswald',],
       'body': ['"Open Sans"',],
       'poppins': ['"Poppins"',],
+      'fugaz': ['"Fugaz One"',],
     },
     colors: {
       ...colors,

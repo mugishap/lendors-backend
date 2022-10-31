@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
       <div className='flex items-center justify-center w-3/12'>
         <div className='flex items-center justify-center px-2 rounded-3xl border-2 border-drive-blue'>
-          <input type="text" value={query} onChange={(e) => { setQuery(e.target.value) }} placeholder='Search...' className='border-none rounded-xl outline-none font-poppins p-2' />
+          <input type="text" value={query} onChange={(e) => { setQuery(e.target.value) }} placeholder='Search cars...' className='border-none rounded-xl outline-none font-poppins p-2' />
         </div>
       </div>
     </div>
