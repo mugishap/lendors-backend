@@ -6,6 +6,18 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'mmsm': '360px',
+      'msm': '435px',
+      'smm20': '620px',
+      'sm': '640px',
+      'sm10': '650px',
+      'md': '768px',
+      'lg': '1024px',
+      'mxl': '1335px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       keyframes: {
         ring: {

@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <div className='w-screen py-3 shadow-lg flex items-center justify-around'>
-      <div className='w-1/3 flex items-center justify-center'>
+      <div className='w-fit flex items-center justify-start'>
         <img className='w-16' src={logo} alt="Navbar logo" />
         <span className='ml-3 text-xl font-bold'>Drive</span>
       </div>
@@ -25,11 +25,11 @@ const Navbar = () => {
             <Link to={`/customer/${'d'}`}>Account</Link>
           </li>
           <li className='mx-4 text-lg font-poppins hover:text-drive-blue'>
-            <Link to={'/settings'}>Settings</Link>
+            <Link to={'/about'}>About Us</Link>
           </li>
         </ul>
       </div>
-      <div className='flex items-center justify-center w-1/3'>
+      <div className='flex items-center justify-center w-3/12'>
         <div className='flex items-center justify-center px-2 rounded-3xl border-2 border-drive-blue'>
           <input type="text" value={query} onChange={(e) => { setQuery(e.target.value) }} placeholder='Search...' className='border-none rounded-xl outline-none font-poppins p-2' />
         </div>
