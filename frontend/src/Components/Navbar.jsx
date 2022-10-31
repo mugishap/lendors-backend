@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className='w-screen py-3 shadow-lg flex items-center justify-around'>
       <div className='w-fit flex items-center justify-start'>
         <img className='w-16' src={logo} alt="Navbar logo" />
-        <span className='ml-3 text-xl font-bold'>Drive</span>
+        <span className='ml-3 text-xl font-bold font-fugaz'>drive</span>
       </div>
       <div className='flex items-center justify-center w-1/3'>
         <ul className='flex'>
