@@ -38,6 +38,7 @@ module.exports = {
       'body': ['"Open Sans"',],
       'poppins': ['"Poppins"',],
       'fugaz': ['"Fugaz One"',],
+      "titillium":['"Titillium Web"',],
     },
     colors: {
       ...colors,

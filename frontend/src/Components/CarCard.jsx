@@ -5,8 +5,8 @@ import { FiHeart } from 'react-icons/fi'
 
 const CarCard = (props) => {
   return (
-    <div className='w-10/12 my-6  bg-white duration-300 rounded shadow-lg hover:scale-105 cursor-pointer h-[26rem] flex flex-col items-center'>
-      <img src={props.car.image} alt={props.car.name} className='w-full rounded-t h-48 object-cover' />
+    <div className='w-10/12 my-6 z-1 hover:z-1 bg-white duration-300 rounded shadow-lg hover:scale-105 cursor-pointer h-[26rem] flex flex-col items-center'>
+      <img src={props.car.image} alt={props.car.name} className='w-full rounded-t h-52 object-cover' />
       <div className='flex flex-col p-2'>
 
         <span className='font-poppins my-1 text-black'>{props.car.name}</span>

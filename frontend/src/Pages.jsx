@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import Home from './Pages/Home/Home.jsx'
+import Explore from './Pages/Explore/Explore.jsx'
 import Car from './Pages/Car/Car.jsx'
 import Requests from './Pages/Request/Requests.jsx'
 import Login from './Pages/Auth/Login.jsx'
@@ -16,7 +17,8 @@ const Pages = () => {
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/explore" element={<Explore />} />
                     <Route path="/car/:carId" element={<Car />} />
                     <Route path="/car/new" element={<NewCar />} />
                     <Route path="/car/requests" element={<Requests />} />
