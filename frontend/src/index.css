@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 
-
+.swiper-button-next{
+    color: white;
+}
+.swiper-button-prev{
+    color: white;
+}
 
 *{
     margin:0;
