@@ -54,4 +54,41 @@ exports.loginAdmin = async (req, res) => {
 
 }
 
+exports.deleteAdmin = async(req,res) =>{
+    try {
+        const {id} = req.params
+        const admin = await Admin.findByPk(id)
+        if(!admin) return res.status(404).json({message:"Admin not found"})
+        await admin.destroy()
+        return res.status(200).json({message:"Admin deleted successfully",admin})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Internal server error",error:error.message})
+    }
+}
 
+exports.updateAdmin = async(req,res) =>{
+    try {
+        const {id} = req.params
+        const admin = await Admin.findByPk(id)
+        if(!admin) return res.status(404).json({message:"Admin not found"})
+        const {names,address,email,telephone} = req.body
+        await admin.update({names,address,email,telephone})
+        return res.status(200).json({message:"Admin updated successfully",admin})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Internal server error",error:error.message})
+    }
+}
+
+exports.getAdminDetails = async(req,res) =>{
+    try {
+        const {id} = req.params
+        const admin = await Admin.findByPk(id)
+        if(!admin) return res.status(404).json({message:"Admin not found"})
+        return res.status(200).json({message:"Admin details",admin})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Internal server error",error:error.message})
+    }
+}

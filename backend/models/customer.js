@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { v4 } = require('uuid');
 module.exports = (sequelize, DataTypes) => {
   class Customer extends Model {
     /**
@@ -14,14 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Customer.init({
-    id:{},
-    names: {type:DataTypes.STRING,allowNull:false,},
-    email: {type:DataTypes.STRING,allowNull:false,},
-    address: {type:DataTypes.STRING,allowNull:false,},
-    joined: {type:DataTypes.STRING,allowNull:false,},
-    telephone: {type:DataTypes.STRING,allowNull:false,},
-    role: {type:DataTypes.STRING,allowNull:false,},
-    password: {type:DataTypes.STRING,allowNull:false,}
+    id: { type: DataTypes.STRING, allowNull: false, defaultValue: v4(), primaryKey: true },
+    names: { type: DataTypes.STRING, allowNull: false, },
+    email: { type: DataTypes.STRING, allowNull: false, },
+    address: { type: DataTypes.STRING, allowNull: false, },
+    joined: { type: DataTypes.INTEGER, defautValue: Date.now(), allowNull: false, },
+    telephone: { type: DataTypes.STRING, allowNull: false, },
+    role: { type: DataTypes.STRING, defautValue: 'user', allowNull: false, },
+    password: { type: DataTypes.STRING, allowNull: false, }
   }, {
     sequelize,
     modelName: 'Customer',

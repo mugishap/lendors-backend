@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     names: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, allowNull: false },
     telephone: { type: DataTypes.STRING, allowNull: false },
-    joined: { type: DataTypes.STRING, defaultValue: Date.now(), allowNull: false },
+    joined: { type: DataTypes.INTEGER, defaultValue: Date.now(), allowNull: false },
     role: { type: DataTypes.STRING, defaultValue: "admin", allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false }
   }, {

@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { v4 } = require('uuid');
 module.exports = (sequelize, DataTypes) => {
   class Car extends Model {
     /**
@@ -14,12 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Car.init({
-    name: DataTypes.STRING,
-    brand: DataTypes.STRING,
-    imageUrl: DataTypes.STRING,
-    added: DataTypes.STRING,
-    price: DataTypes.STRING,
-    currency: DataTypes.STRING
+    id: { type: DataTypes.STRING, allowNull: false, defaultValue: v4(), primaryKey: true },
+    name: { type: DataTypes.STRING, allowNull: false, },
+    brand: { type: DataTypes.STRING, allowNull: false, },
+    imageUrl: { type: DataTypes.STRING, allowNull: false, },
+    added: { type: DataTypes.STRING, allowNull: false, },
+    price: { type: DataTypes.STRING, allowNull: false, },
+    isBooked: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false, },
+    currency: { type: DataTypes.STRING, allowNull: false, }
   }, {
     sequelize,
     modelName: 'Car',

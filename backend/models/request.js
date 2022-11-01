@@ -14,10 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Request.init({
-    customerId: DataTypes.STRING,
-    carId: DataTypes.STRING,
-    timeRequested: DataTypes.STRING,
-    isAllowed: DataTypes.BOOLEAN
+    id: { type: DataTypes.STRING, allowNull: false },
+    customerId: { type: DataTypes.STRING, allowNull: false },
+    carId: { type: DataTypes.STRING, allowNull: false },
+    startDate: { type: DataTypes.INTEGER, allowNull: false },
+    endDate: { type: DataTypes.INTEGER, allowNull: false },
+    timeRequested: { type: DataTypes.INTEGER, allowNull: false, defaultValue: Date.now() },
+    isAllowed: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
   }, {
     sequelize,
     modelName: 'Request',
