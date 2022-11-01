@@ -119,6 +119,11 @@ exports.updateCustomer = async (req, res) => {
         const { customerId } = req.params
         const { name, email, address, telephone } = req.body
 
+        const customer = Customer.find({ where: { id: customerId } })
+        await customer.update({ name, email, address, telephone })
+        if (!customer) return res.status(400).json({ message: "Customer doen't exist" })
+        return res.status(200).json({ message: "Customer updated succesfully" })
+        
 
     } catch (error) {
         console.log(error)

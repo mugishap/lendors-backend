@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3000
 const dotenv = require('dotenv')
 const { connectToDB } = require('./utils/database')
 const adminRouter = require('./routes/admin.route')
+// const {Swaggify}=require('swaggiffy')
 
 dotenv.config()
 
@@ -20,3 +21,5 @@ app.listen(PORT, (err) => {
     if (err) console.log("Error running server")
     console.log(`Server UP on PORT ${PORT}`)
 })
+
+// new Swaggiffy().setupExpress(app).swaggiffy();
