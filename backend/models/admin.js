@@ -1,7 +1,10 @@
 'use strict';
+const { DarkModeTwoTone } = require('@mui/icons-material');
 const {
   Model
 } = require('sequelize');
+
+const { v4 } = require('uuid')
 module.exports = (sequelize, DataTypes) => {
   class Admin extends Model {
     /**
@@ -14,12 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Admin.init({
-    names: DataTypes.STRING,
-    email: DataTypes.STRING,
-    telephone: DataTypes.STRING,
-    joined: DataTypes.STRING,
-    role: DataTypes.STRING,
-    password: DataTypes.STRING
+    id: { type: DataTypes.STRING, defaultValue: v4({ random: true }), primaryKey: true, allowNull: false },
+    names: { type: DataTypes.STRING, allowNull: false },
+    email: { type: DataTypes.STRING, allowNull: false },
+    telephone: { type: DataTypes.STRING, allowNull: false },
+    joined: { type: DataTypes.STRING, defaultValue: Date.now(), allowNull: false },
+    role: { type: DataTypes.STRING, defaultValue: "admin", allowNull: false },
+    password: { type: DataTypes.STRING, allowNull: false }
   }, {
     sequelize,
     modelName: 'Admin',

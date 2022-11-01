@@ -14,13 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Customer.init({
-    names: DataTypes.STRING,
-    email: DataTypes.STRING,
-    address: DataTypes.STRING,
-    joined: DataTypes.STRING,
-    telephone: DataTypes.STRING,
-    role: DataTypes.STRING,
-    password: DataTypes.STRING
+    id:{},
+    names: {type:DataTypes.STRING,allowNull:false,},
+    email: {type:DataTypes.STRING,allowNull:false,},
+    address: {type:DataTypes.STRING,allowNull:false,},
+    joined: {type:DataTypes.STRING,allowNull:false,},
+    telephone: {type:DataTypes.STRING,allowNull:false,},
+    role: {type:DataTypes.STRING,allowNull:false,},
+    password: {type:DataTypes.STRING,allowNull:false,}
   }, {
     sequelize,
     modelName: 'Customer',
