@@ -5,13 +5,14 @@ import { deleteAllCookies, getCookie } from "../utils/cookies";
 let AuthContext = React.createContext({});
 
 export const useAuth = () => {
-  return React.useContext(AuthContext);
+  return useContext(AuthContext);
 };
 
 export default function AuthProvider({ children }) {
 
-    let [isLoggedIn, setIsLoggedIn] = useState(undefined);
-    const baseURL = process.env.SERVER_URL;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(undefined);
+  const baseURL = process.env.SERVER_URL;
 
   const decodeToken = async () => {
     const token = getCookie("token");
@@ -32,23 +33,43 @@ export default function AuthProvider({ children }) {
     try {
       return {};
     } catch (error) {
-      //console.log(error);
-      return null;
+      console.log(error);
+      return { messag: error };
     }
   };
 
   const logout = async () => {
-    const data = await axios.get(`${baseURL}/auth/logout`);
-    return data;
+    deleteAllCookies();
+    setUser(undefined);
+    setIsLoggedIn(false);
   };
 
-  const login = async ({ formData }) => {7
+  const signup = async ({ formData }) => {
+    const data = await fetch(`${baseURL}/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    return data;
+  }
+
+  const login = async ({ formData }) => {
+
     console.log(formData)
-    const data = await axios.post(`${baseURL}/auth/login`, formData);
+    const data = await fetch(`${baseURL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    setIsLoggedIn(true);
     return data;
   };
 
-  let value = { user, logout, getUserById, login };
+  let value = { user, logout, signup, decodeToken, getUserById, login };
 
   return (
     <>{<AuthContext.Provider value={value}>{children}</AuthContext.Provider>}</>

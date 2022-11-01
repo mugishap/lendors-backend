@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, Input } from '@mui/material'
 import IconButton from '@mui/material/IconButton';
 import logo from './../../assets/logo.png'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useAuth } from './../../Context/AuthContext'
+import { useAdmin } from './../../Context/AdminContext'
 
 
 const Login = () => {
@@ -60,11 +62,21 @@ const Login = () => {
     document.title = 'Login | Drive'
   }, [])
 
-  // const { login } = useCustomers()
-
+  const { login } = useAuth()
+  const { adminLogin } = useAdmin()
   const handleLogin = async (e) => {
     e.preventDefault()
-    const data = "D"
+    if (document.location.pathname.includes('/auth/')) {
+      const data = login({ formData })
+      console.log(data)
+    }
+    else if (document.location.pathname.includes('/admin/')) {
+      const data = await adminLogin({ formData })
+      console.log(data)
+    }
+    else {
+      return
+    }
   }
 
 
@@ -88,15 +100,13 @@ const Login = () => {
       </div>
       <div className='w-1/2 bg-white flex flex-col h-full items-center justify-center'>
         <div className='rounded-2xl p-8 flex w-7/12 flex-col items-center border-2 border-slate-200'>
-        <img src={logo} alt="" />
+          <img src={logo} alt="" />
           <span className='font-poppins text-2xl my-8 w-full text-center font-semibold'>Welcome Back!</span>
           <form className='my-3 flex w-full flex-col items-center justify-center' onSubmit={handleLogin}>
 
-            
-          <input onChange={(e) => { setFormData({ ...formData, email: e.target.value }) }} className="my-2 h-12 font-poppins border-2 outline-none border-drive-blue p-2 rounded w-full" type="email" placeholder="Email" />
+            <input onChange={(e) => { setFormData({ ...formData, email: e.target.value }) }} className="my-2 h-12 font-poppins border-2 outline-none border-drive-blue p-2 rounded w-full" type="email" placeholder="Email" />
 
-
-           <div className='flex items-center justify-between rounded border-2 border-drive-blue w-full p-2 my-2'>
+            <div className='flex items-center justify-between rounded border-2 border-drive-blue w-full p-2 my-2'>
               <input type={formData.showPassword ? 'text' : 'password'} placeholder={'Password'} value={formData.password} onChange={(e) => { setFormData({ ...formData, password: e.target.value }) }} className="border-none outline-none w-11/12" />
               <span className='text-slate-600 w-1/12'>
                 {
