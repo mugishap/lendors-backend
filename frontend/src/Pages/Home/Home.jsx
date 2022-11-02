@@ -1,150 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './../../Components/Navbar'
-import { carsObject } from './../../utils/sampledata'
+import { images, testimonials,features } from './../../utils/sampledata'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from '@mui/material/Rating';
 import { BsArrowRight, BsCalendarEvent, BsFilm } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
+import Footer from './../../Components/Footer'
 
 const Home = () => {
   useEffect(() => {
     document.title = 'Drive | Home'
   }, [])
 
-  const features = [
-    {
-      subheading: "Car rental prices",
-      list: [
-        {
-          name: "As low as you can think of"
-        },
-        {
-          name: "100% car insurance"
-        },
-        {
-          name: "24/7 customer support"
-        },
-        {
-          name: "No hidden charges"
-        }
-      ]
-    },
-    {
-      subheading: "Car rental locations",
-      list: [
-        {
-          name: "New York"
-        },
-        ,
-        {
-          name: "Chicago"
-        },
-        {
-          name: "San Francisco"
-        },
-        {
-          name: "Many more..."
-        }
-
-      ]
-    },
-    {
-      subheading: "Realistic features",
-      list: [
-        {
-          name: "Real time car updates",
-
-        },
-        {
-          name: "Global Positioning Systems for our cars"
-        },
-        {
-          name: "Automatic lock and windshields"
-        },
-        {
-          name: "Bullet proof cars"
-        }
-      ]
-    }
-  ]
-
-  const images = [
-    {
-      imageUrl: "https://wallpapercave.com/wp/wp4318749.jpg",
-      imageAlt: "first"
-    },
-    {
-      imageUrl: "https://wallpapercave.com/wp/wp7013023.jpg",
-      imageAlt: "second"
-    },
-    {
-      imageUrl: "https://wallpapercave.com/wp/wp2450501.jpg",
-      imageAlt: 'third'
-    },
-    {
-      imageUrl: "https://wallpapercave.com/wp/wp1818652.jpg",
-      imageAlt: "fourth"
-    },
-    {
-      imageUrl: "https://wallpapercave.com/wp/wp1818651.jpg",
-      imageAlt: "fifth"
-    },
-    {
-      imageUrl: "https://wallpapercave.com/wp/lP3oKMT.jpg",
-      imageAlt: "sixth"
-    }
-  ]
-
-  const testimonials = [
-    {
-      name: "John Doe",
-      imageUrl: "https://i.pravatar.cc/150?img=2",
-      imageAlt: "John Doe",
-      rating: 4,
-      testimony: "Drive saved me this time when I was about to lose my job and I rented a car from the in just a snap and got to work on time. If anyone is planning on using any other service he is risking himself."
-    },
-    {
-      name: "John Doe",
-      imageUrl: "https://i.pravatar.cc/150?img=2",
-      imageAlt: "John Doe",
-      rating: 4,
-      testimony: "Drive saved me this time when I was about to lose my job and I rented a car from the in just a snap and got to work on time. If anyone is planning on using any other service he is risking himself."
-    },
-    {
-      name: "John Doe",
-      imageUrl: "https://i.pravatar.cc/150?img=2",
-      imageAlt: "John Doe",
-      rating: 4,
-      testimony: "Drive saved me this time when I was about to lose my job and I rented a car from the in just a snap and got to work on time. If anyone is planning on using any other service he is risking himself."
-    },
-    {
-      name: "John Doe",
-      imageUrl: "https://i.pravatar.cc/150?img=2",
-      imageAlt: "John Doe",
-      rating: 4,
-      testimony: "Drive saved me this time when I was about to lose my job and I rented a car from the in just a snap and got to work on time. If anyone is planning on using any other service he is risking himself."
-    },
-    {
-      name: "John Doe",
-      imageUrl: "https://i.pravatar.cc/150?img=2",
-      imageAlt: "John Doe",
-      rating: 4,
-      testimony: "Drive saved me this time when I was about to lose my job and I rented a car from the in just a snap and got to work on time. If anyone is planning on using any other service he is risking himself."
-    },
-    {
-      name: "John Doe",
-      imageUrl: "https://i.pravatar.cc/150?img=2",
-      imageAlt: "John Doe",
-      rating: 4,
-      testimony: "Drive saved me this time when I was about to lose my job and I rented a car from the in just a snap and got to work on time. If anyone is planning on using any other service he is risking himself."
-    },
-  ]
 
   const [activeFeature, setActiveFeature] = useState(0)
 
   useEffect(() => {
-
     setTimeout(() => {
       activeFeature === 2 ? setActiveFeature(0) : setActiveFeature(activeFeature + 1)
     }, 2000)
@@ -174,8 +46,8 @@ const Home = () => {
             onSlideChange={() => console.log('slide change')}
           >
             {
-              images.map(image => (
-                <SwiperSlide className='w-full flex h-full items-center justify-center relative'>
+              images.map((image,index) => (
+                <SwiperSlide key={index} className='w-full flex h-full items-center justify-center relative'>
                   <img src={image.imageUrl} className='h-full w-full' alt={image.imageAlt} />
                   <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent w-full h-24'></div>
                 </SwiperSlide>
@@ -205,13 +77,13 @@ const Home = () => {
             </div>
 
             <Link className='flex items-center justify-around' to={`/explore`}>
-            <button className='rounded flex items-center justify-around cursor-pointer px-12 pr-6 py-2 border font-light duration-75 my-6 border-drive-blue bg-white hover:bg-drive-blue text-drive-blue hover:text-white'>
-              <span className='text-xl font-poppins font-medium duration-0'>
-                Explore
-              </span>
-              <BsArrowRight className='ml-4' />
-            </button>
-          </Link>
+              <button className='rounded flex items-center justify-around cursor-pointer px-12 pr-6 py-2 border font-light duration-75 my-6 border-drive-blue bg-white hover:bg-drive-blue text-drive-blue hover:text-white'>
+                <span className='text-xl font-poppins font-medium duration-0'>
+                  Explore
+                </span>
+                <BsArrowRight className='ml-4' />
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -275,7 +147,7 @@ const Home = () => {
       </div>
 
       <div className='w-full my-14 flex flex-col items-center justify-center'>
-      <span className='text-4xl font-semibold font-poppins px-3'>Testimonials</span>
+        <span className='text-4xl font-semibold font-poppins px-3'>Testimonials</span>
         <Swiper className='rounded w-full h-[38rem]'
           // install Swiper modules
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -289,9 +161,9 @@ const Home = () => {
           onSlideChange={() => console.log('slide change')}
         >
           {
-            testimonials.map(image => (
-              <SwiperSlide className='px-3 md:px-12 w-full flex-col flex h-full items-center justify-center'>
-                <img alt={image.imageAlt} src={image.imageUrl} className="w-16 my-3 rounded-full object-cover"/>
+            testimonials.map((image,index) => (
+              <SwiperSlide key={index} className='px-3 md:px-12 w-full flex-col flex h-full items-center justify-center'>
+                <img alt={image.imageAlt} src={image.imageUrl} className="w-16 my-3 rounded-full object-cover" />
                 <span className='font-semibold text-xl font-poppins my-3'>{image.name}</span>
 
                 <Rating name="read-only" value={image.rating} readOnly className='my-2' />
@@ -302,7 +174,7 @@ const Home = () => {
           }
         </Swiper>
       </div>
-
+      <Footer />
     </div>
   )
 }
