@@ -10,14 +10,14 @@ const Footer = () => {
     }
 
     return (
-        <div className='px-4 bg-[#161616]/90  py-14 text-white font-poppins w-full flex items-start justify-around'>
-            <div className='flex flex-col items-center w-1/4'>
-                <img src={logo} alt="Logo" />
+        <div className='px-4 bg-[#161616]/90  py-14 text-white font-poppins w-full grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1'>
+            <div className='hidden lg:flex flex-col items-center w-full'>
+                <img className='' src={logo} alt="Logo" />
                 <span className='text-xl font-bold font-poppins'>
                     drive
                 </span>
             </div>
-            <div className='flex flex-col items-start w-1/4'>
+            <div className='my-4 flex flex-col items-start w-full'>
                 <span className='text-xl font-poppins font-medium'>CONTACT US</span>
                 <ul className='list-disc ml-4'>
                     <li>Phone: +250782307144</li>
@@ -25,7 +25,7 @@ const Footer = () => {
                     <li>Location: Kigali, Rwanda</li>
                 </ul>
             </div>
-            <div className='flex flex-col items-center w-1/4'>
+            <div className='my-4 flex flex-col items-start w-full'>
                 <span className='text-xl font-poppins font-medium'>OUR LOCATIONS</span>
                 <ul className='list-disc ml-4'>
                     <li>
@@ -42,7 +42,7 @@ const Footer = () => {
                     </li>
                 </ul>
             </div>
-            <div className='flex flex-col items-start w-1/4'>
+            <div className='my-4 flex flex-col items-start w-full'>
                 <span className='text-xl font-poppins font-medium'>SUBSCRIBE</span>
                 <span className='my-3 font-poppins font-light italic text-base'>Get updates from our weekly newsletter</span>
 
