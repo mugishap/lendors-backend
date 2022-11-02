@@ -12,15 +12,17 @@ import NewCar from './Pages/Car/NewCar.jsx'
 import NotFound from './Pages/404/NotFound.jsx'
 
 const Pages = () => {
-   
+
     return (
         <div>
             <BrowserRouter>
                 <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/explore" element={<Explore />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/explore" element={<Explore />} />
                     <Route path="/car/:carId" element={<Car />} />
                     <Route path="/car/new" element={<NewCar />} />
+                    <Route path="/admin/customers" element={<Customers />} />
+                    <Route path="/admin/requests" element={<Requests />} />
                     <Route path="/car/requests" element={<Requests />} />
                     <Route path="/customer/:customerId" element={<Customer />} />
                     <Route path="/customers" element={<Customers />} />
