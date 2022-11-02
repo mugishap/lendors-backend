@@ -11,7 +11,7 @@ const NotFound = () => {
   return (
     <div className='w-screen h-screen flex items-center justify-center'>
       <div className='sm:w-5/12 md:w-1/3 rounded h-1/3 sm:border-2 border-drive-blue p-8 flex items-center justify-center flex-col'>
-        <span className='font-poppins text-2xl font-semibold'>404</span>
+        <span className='font-titillium text-drive-blue text-6xl  font-semibold'>404</span>
         <span className='font-poppins text-xl font-semibold'>Page Not Found</span>
 
         <Link className='flex items-center justify-around' to={`/`}>

@@ -14,6 +14,7 @@ export default function CarProvider({ children }) {
     const { user } = useAuth();
     const { isLoggedIn } = useAuth();
     const [cars, setCars] = useState([]);
+    const [car, setCar] = useState();
 
     const baseURL = process.env.SERVER_URL;
 
@@ -26,6 +27,7 @@ export default function CarProvider({ children }) {
     const getCarById = async (id) => {
         const data = await fetch(`${baseURL}/car/${id}`);
         const car = await data.json();
+        setCar(car)
         return car;
     }
 

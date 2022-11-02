@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './../../Components/Navbar'
-import { images, testimonials,features } from './../../utils/sampledata'
+import { images, testimonials, features } from './../../utils/sampledata'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Rating from '@mui/material/Rating';
@@ -26,7 +26,6 @@ const Home = () => {
   return (
     <div className='w-screen flex flex-col items-center justify-center h-fit bg-white'>
       <Navbar active="home" />
-
       <div className=' flex w-full px-12 my-12 items-center justify-center'>
         <span className='text-4xl text-start  w-full font-bold font-titillium'>Welcome to drive!!</span>
       </div>
@@ -46,7 +45,7 @@ const Home = () => {
             onSlideChange={() => console.log('slide change')}
           >
             {
-              images.map((image,index) => (
+              images.map((image, index) => (
                 <SwiperSlide key={index} className='w-full flex h-full items-center justify-center relative'>
                   <img src={image.imageUrl} className='h-full w-full' alt={image.imageAlt} />
                   <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent w-full h-24'></div>
@@ -69,8 +68,8 @@ const Home = () => {
               <ul className='list-disc  text-xl font-light pl-8 font-poppins'>
 
                 {
-                  features[activeFeature].list.map((item) => (
-                    <li>{item.name}</li>
+                  features[activeFeature].list.map((item, index) => (
+                    <li key={index}>{item.name}</li>
                   ))
                 }
               </ul>
@@ -161,7 +160,7 @@ const Home = () => {
           onSlideChange={() => console.log('slide change')}
         >
           {
-            testimonials.map((image,index) => (
+            testimonials.map((image, index) => (
               <SwiperSlide key={index} className='px-3 md:px-12 w-full flex-col flex h-full items-center justify-center'>
                 <img alt={image.imageAlt} src={image.imageUrl} className="w-16 my-3 rounded-full object-cover" />
                 <span className='font-semibold text-xl font-poppins my-3'>{image.name}</span>
@@ -173,6 +172,12 @@ const Home = () => {
             ))
           }
         </Swiper>
+      </div>
+
+
+      <div className='w-full flex flex-col items-center justify-center'>
+        <span className='text-4xl font-semibold font-poppins px-3 my-4'>Get Our Mobile Appp</span>
+        <div className='w-full flex items-center justify-center my-4'></div>
       </div>
       <Footer />
     </div>
