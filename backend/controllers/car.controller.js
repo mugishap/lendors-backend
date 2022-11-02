@@ -1,9 +1,9 @@
 const Car = require('./../models/car')
 
 
-export const getCars = async (req, res) => {
+exports.getCars = async (req, res) => {
     try {
-        const cars = await Car.findAll()
+        const cars = await Car().findAll()
         if (!cars) return res.status(404).json({ message: "No cars found" })
         return res.status(200).json({ message: "Cars fetched successfully", cars: cars.splice(0, 30) })
     } catch (error) {
@@ -12,7 +12,7 @@ export const getCars = async (req, res) => {
     }
 }
 
-export const newCar = async (req, res) => {
+exports.newCar = async (req, res) => {
     try {
         const { name, price, currency, description } = req.body
         const car = await Car.create({ name, price, currency, description })
@@ -24,7 +24,7 @@ export const newCar = async (req, res) => {
     }
 }
 
-export const updateCar = async (req, res) => {
+exports.updateCar = async (req, res) => {
     try {
         const { name, price, currency, description } = req.body
         const { carId } = req.params
@@ -40,7 +40,7 @@ export const updateCar = async (req, res) => {
 }
 
 
-export const deleteCar = async (req, res) => {
+exports.deleteCar = async (req, res) => {
     try {
         const { carId } = req.params
         const car = await Car.findByPk(carId)
@@ -54,7 +54,7 @@ export const deleteCar = async (req, res) => {
 
 }
 
-export const getCarById = async (req, res) => {
+exports.getCarById = async (req, res) => {
     try {
         const { carId } = req.params
         const car = await Car.findByPk(carId)
@@ -68,7 +68,7 @@ export const getCarById = async (req, res) => {
     }
 }
 
-export const getCarByQuery = async (req, res) => {
+exports.getCarByQuery = async (req, res) => {
     try {
         const { Op } = require('sequelize')
         const { query } = req.params

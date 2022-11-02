@@ -14,7 +14,7 @@ const Navbar = (props) => {
   const [showNav, setShowNav] = useState(false)
 
   return (
-    <div className='sticky bg-white z-3 top-0 w-screen py-3 shadow-lg flex items-center justify-around '>
+    <div className='sticky bg-white z-10 top-0 w-screen py-3 shadow-lg flex items-center justify-around '>
 
 
       {

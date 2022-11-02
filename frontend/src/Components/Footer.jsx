@@ -18,15 +18,13 @@ const Footer = () => {
 
     return (
         <div className='px-4 bg-[#161616]/90  py-14 text-white font-poppins w-full grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1'>
-            <ToastContainer
-
+            {/* <ToastContainer
                 autoClose={5000}
                 hideProgressBar={true}
                 theme='colored'
                 pauseOnHover={true}
                 position={'top-center'}
-
-            />
+            /> */}
             <div className='hidden lg:flex flex-col items-center w-full'>
                 <img className='' src={logo} alt="Logo" />
                 <span className='text-xl font-bold font-poppins'>

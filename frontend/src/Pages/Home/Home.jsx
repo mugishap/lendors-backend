@@ -26,23 +26,23 @@ const Home = () => {
   return (
     <div className='w-screen flex flex-col items-center justify-center h-fit bg-white'>
       <Navbar active="home" />
-      <div className=' flex w-full px-12 my-12 items-center justify-center'>
-        <span className='text-4xl text-start  w-full font-bold font-titillium'>Welcome to drive!!</span>
+      <div className=' flex w-full px-1  sm:px-12 my-4 sm:my-12 items-center justify-center'>
+        <span className='text-xl sm:text-4xl text-start  w-full font-bold font-titillium'>Welcome to drive!!</span>
       </div>
 
       <div className='w-full flex lg:flex-row flex-col md:px-2 lg:px-12  items-center justify-center'>
         <div className='rounded w-full lg:w-7/12 flex items-center'>
-          <Swiper className='rounded w-full h-[38rem]'
+          <Swiper className='rounded w-full h-[12em] sm:h-[38rem]'
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={100}
+            spaceBetween={10}
             slidesPerView={1}
-            navigation
+            // navigation
             pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
-            autoplay={{ delay: 1, disableOnInteraction: false }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            // autoplay={}
+            // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log('slide change')}
           >
             {
               images.map((image, index) => (
@@ -54,11 +54,11 @@ const Home = () => {
             }
           </Swiper>
         </div>
-        <div className='px-4 lg:mt-0 mt-8 h-[38rem] w-full lg:w-5/12 flex flex-col items-start justify-start p-2'>
+        <div className='px-4 lg:mt-0 mt-8 h-[38rem] w-full lg:w-5/12 flex flex-col md:pl-14 items-start justify-start p-2'>
           <div className='flex flex-col items-start justify-start lg:w-4/5'>
-            <span className='text-3xl font-bold font-poppins'>The one and only car rental service</span>
+            <span className='text-lg sm:text-3xl font-bold font-poppins'>The one and only car rental service</span>
             <div className=' items-center w-full flex justify-between'>
-              <span className='font-light text-xl font-poppins my-6'>Rated top for our services</span>
+              <span className='font-light text-sm sm:text-xl font-poppins my-6'>Rated top for our services</span>
               <Rating name="read-only" value={4} readOnly />
             </div>
             <div className='flex text-xl flex-col my-8'>
@@ -147,10 +147,10 @@ const Home = () => {
 
       <div className='w-full my-14 flex flex-col items-center justify-center'>
         <span className='text-4xl font-semibold font-poppins px-3'>Testimonials</span>
-        <Swiper className='rounded w-full h-[38rem]'
+        <Swiper className='z-1 rounded w-full h-[38rem]'
           // install Swiper modules
           modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={100}
+          spaceBetween={10}
           slidesPerView={3}
           // navigation
           pagination={{ clickable: true }}
@@ -161,7 +161,7 @@ const Home = () => {
         >
           {
             testimonials.map((image, index) => (
-              <SwiperSlide key={index} className='px-3 md:px-12 w-full flex-col flex h-full items-center justify-center'>
+              <SwiperSlide key={index} className='px-3 md:px-12 w-96 flex-col flex h-full items-center justify-center'>
                 <img alt={image.imageAlt} src={image.imageUrl} className="w-16 my-3 rounded-full object-cover" />
                 <span className='font-semibold text-xl font-poppins my-3'>{image.name}</span>
 

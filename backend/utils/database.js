@@ -5,15 +5,17 @@ dotenv.config()
 const databaseUsername = process.env.DATABASE_USERNAME
 const databasePassword = process.env.DATABASE_PASSWORD
 const databaseName = process.env.DATABASE_NAME
-const databasePort = process.env.DATABASE_DRIVER 
 
-const sequelize = new Sequelize(`postgres://${databaseUsername}:'${databasePassword}':${databasePort}/${databaseName}`)
+const sequelize = new Sequelize(databaseName, databaseUsername, databasePassword, {
+    host: 'localhost',
+    dialect: 'postgres'
+});
 
 exports.connectToDB = async () => {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
     } catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error({ message: 'Unable to connect to the database:', error: error });
     }
 }

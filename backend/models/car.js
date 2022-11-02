@@ -3,7 +3,12 @@ const {
   Model
 } = require('sequelize');
 const { v4 } = require('uuid');
-module.exports = (sequelize, DataTypes) => {
+const sequelize = require('sequelize')
+const DataTypes = require('sequelize/lib/data-types')
+
+module.exports = () => {
+
+
   class Car extends Model {
     /**
      * Helper method for defining associations.
@@ -14,8 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
   Car.init({
-    id: { type: DataTypes.STRING, allowNull: false, defaultValue: v4(), primaryKey: true },
+    id: { type: DataTypes.UUID, allowNull: false, defaultValue: v4(), primaryKey: true },
     name: { type: DataTypes.STRING, allowNull: false, },
     brand: { type: DataTypes.STRING, allowNull: false, },
     imageUrl: { type: DataTypes.STRING, allowNull: false, },
@@ -25,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     currency: { type: DataTypes.STRING, allowNull: false, }
   }, {
     sequelize,
-    modelName: 'Car',
+    name:"Car"
   });
+
   return Car;
 };

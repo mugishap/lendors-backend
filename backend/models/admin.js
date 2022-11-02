@@ -1,11 +1,13 @@
 'use strict';
-const { DarkModeTwoTone, Schema } = require('@mui/icons-material');
+const { DarkModeTwoTone } = require('@mui/icons-material');
 const {
   Model
 } = require('sequelize');
-// import { Schema } from 'swaggiffy';
+const { Schema } = require('swaggiffy');
 
 const { v4 } = require('uuid')
+
+
 module.exports = (sequelize, DataTypes) => {
   // @Schema('Admin')
   class Admin extends Model {
