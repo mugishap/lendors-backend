@@ -14,7 +14,7 @@ const Admin = sequelize.define('Admin', {
   password: { type: DataTypes.STRING, allowNull: false }
 });
 
-registerSchema('Admin', Admin, { orm: 'sequelize' });
+//registerSchema('Admin', Admin, { orm: 'sequelize' });
 
 module.exports = () => {
   return Admin;

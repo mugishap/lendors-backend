@@ -21,7 +21,7 @@ exports.createAdmin = async (req, res) => {
     try {
         const { names, address, email, telephone, password } = req.body
         const hashedPassword = await bcrypt.hash(password, 8);
-        const admin = Admin.create({
+        const admin = Admin().create({
             names,
             address,
             email, telephone,
@@ -40,7 +40,7 @@ exports.loginAdmin = async (req, res) => {
     try {
         const { email, password } = req.body
 
-        const admin = await Admin.find({ email })
+        const admin = await Admin().findOne({ email })
         if (!admin) return res.status(400).json({ message: "Email entered does not exist" })
         const isMatch = await bcrypt.compare(password, admin.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
@@ -61,7 +61,7 @@ exports.loginAdmin = async (req, res) => {
 exports.deleteAdmin = async (req, res) => {
     try {
         const { id } = req.params
-        const admin = await Admin.findByPk(id)
+        const admin = await Admin().findByPk(id)
         if (!admin) return res.status(404).json({ message: "Admin not found" })
         await admin.destroy()
         return res.status(200).json({ message: "Admin deleted successfully", admin })
@@ -74,7 +74,7 @@ exports.deleteAdmin = async (req, res) => {
 exports.updateAdmin = async (req, res) => {
     try {
         const { id } = req.params
-        const admin = await Admin.findByPk(id)
+        const admin = await Admin().findByPk(id)
         if (!admin) return res.status(404).json({ message: "Admin not found" })
         const { names, address, email, telephone } = req.body
         await admin.update({ names, address, email, telephone })
@@ -88,7 +88,7 @@ exports.updateAdmin = async (req, res) => {
 exports.getAdminDetails = async (req, res) => {
     try {
         const { id } = req.params
-        const admin = await Admin.findByPk(id)
+        const admin = await Admin().findByPk(id)
         if (!admin) return res.status(404).json({ message: "Admin not found" })
         return res.status(200).json({ message: "Admin details", admin })
     } catch (error) {

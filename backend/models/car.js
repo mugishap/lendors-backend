@@ -15,7 +15,7 @@ const Car = sequelize.define('Car', {
   currency: { type: DataTypes.STRING, allowNull: false, }
 }, {});
 
-registerSchema('Car', Car, { orm: 'sequelize' });
+//registerSchema('Car', Car, { orm: 'sequelize' });
 
 module.exports = () => {
   return Car;

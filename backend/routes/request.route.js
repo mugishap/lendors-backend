@@ -1,7 +1,7 @@
 const express = require('express')
 const { registerDefinition } = require('swaggiffy')
 const { denyRequest, grantRequest } = require('../controllers/admin.controller')
-const { createAccount, loginrequest, deleterequest, updaterequest, getrequest, newRequest } = require('../controllers/request.controller')
+const { denyRequest, grantRequest, newRequest } = require('../controllers/request.controller')
 const { checkLoggedIn, checkAdminRole } = require('./../middlewares/auth.middleware')
 const requestRouter = express.Router()
 

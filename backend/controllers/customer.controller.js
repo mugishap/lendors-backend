@@ -3,9 +3,11 @@ const Car = require('../models/car')
 const { mailTo } = require('../utils/email')
 const dateFns = require('date-fns')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
+dotenv.config()
 
 exports.createAccount = async (req, res) => {
-
     try {
         const { names, email, address, telephone, password } = req.body
         const joined = Date.now()
@@ -23,7 +25,7 @@ exports.getCustomer = async (req, res) => {
 
     try {
         const { userId } = req.user
-        const user = await Customer.find({ where: { id: userId } })
+        const user = await Customer().findOne({ where: { id: userId } })
         if (!user) return res.status(500).json({ message: "Error getting user data" })
         return res.status(200).json({ message: "Getting usser successfull", user })
     } catch (error) {
@@ -36,17 +38,16 @@ exports.getCustomer = async (req, res) => {
 exports.loginCustomer = async (req, res) => {
     try {
         const { email, password } = req.body
-
-        const user = await Customer.find({ email })
+        const user = await (await Customer().findOne({ email })).get({ plain: true })
         if (!user) return res.status(400).json({ message: "Email entered does not exist" })
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
-
         const token = await jwt.sign({ userId: user.id, isAdmin: false }, process.env.JWT_SECRET_KEY, {
             expiresIn: '24h'
         })
-
-        return res.status(200).json({ message: "Logged in successfully", admin, token })
+        const returnedUser = { ...user }
+        delete returnedUser.password
+        return res.status(200).json({ message: "Logged in successfully", user: returnedUser, token })
 
     } catch (error) {
         console.log(error)
@@ -60,9 +61,9 @@ exports.carRequest = async (req, res) => {
         const { customerID } = req.user
         const { startDate, endDate } = req.body
 
-        const user = await Customer.find({ where: { id: customerID } })
+        const user = await Customer().findOne({ where: { id: customerID } })
 
-        const car = await Car.find({ where: { id: carID } })
+        const car = await Car.findOne({ where: { id: carID } })
         if (!car) return res.status(400).json({ message: "Car not found" })
 
         const request = Request.create({
@@ -123,7 +124,7 @@ exports.updateCustomer = async (req, res) => {
         const { customerId } = req.params
         const { name, email, address, telephone } = req.body
 
-        const customer = Customer.find({ where: { id: customerId } })
+        const customer = Customer().findOne({ where: { id: customerId } })
         await customer.update({ name, email, address, telephone })
         if (!customer) return res.status(400).json({ message: "Customer doen't exist" })
         return res.status(200).json({ message: "Customer updated succesfully" })

@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 80
 const dotenv = require('dotenv')
 const { connectToDB } = require('./utils/database')
 const adminRouter = require('./routes/admin.route')
@@ -33,4 +33,4 @@ app.use((req, res, next) => {
         message: "Route not found"
     })
 })
-new Swaggiffy().setupExpress(app).swaggiffy();
+// new Swaggiffy().setupExpress(app).swaggiffy();

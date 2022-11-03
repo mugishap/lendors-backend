@@ -23,14 +23,14 @@ exports.newRequest = async (req, res) => {
 exports.grantRequest = async (req, res) => {
     try {
         const { requestID } = req.params
-        const request = await request.find({ where: { id: requestID } })
+        const request = await Request().findOne({ where: { id: requestID } })
         if (!request) return res.status(400).json({ message: "Request not found" })
-        const car = await Car.find({ where: { id: request.carId } })
+        const car = await Car.findOne({ where: { id: request.carId } })
 
         await car.update({ isBooked: true })
         await request.update({ isAllowed: true })
 
-        const customer = await Customer.find({ where: { id: req.userId } })
+        const customer = await Customer().findOne({ where: { id: req.userId } })
         if (!customer) return res.status(400).json({ messsage: "Customer does not exist" })
         await mailTo(customer.email,)
 
@@ -43,9 +43,9 @@ exports.grantRequest = async (req, res) => {
 exports.denyRequest = async (req, res) => {
     try {
         const { requestID } = req.params
-        const request = await Request.find({ where: { id: requestID } })
+        const request = await Request().findOne({ where: { id: requestID } })
         if (!request) return res.status(400).json({ message: "Request not found" })
-        const car = await Car.find({ where: { id: request.carId } })
+        const car = await Car.findOne({ where: { id: request.carId } })
 
         await car.update({ isBooked: true })
         await request.update({ isAllowed: true })
