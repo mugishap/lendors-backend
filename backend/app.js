@@ -19,15 +19,18 @@ app.use('/admin', adminRouter)
 app.use('/car', carRouter)
 app.use('/customer', customerRouter)
 
+app.get('/', (req, res) => {
+    return res.status(200).json({ message: "Welcome to the drive server" })
+})
+
 app.listen(PORT, (err) => {
     if (err) console.log("Error running server")
     console.log(`Server UP on PORT ${PORT}`)
 })
 
-//Catch all  404 routes 
 app.use((req, res, next) => {
     res.status(404).json({
         message: "Route not found"
     })
 })
-// new Swaggiffy().setupExpress(app).swaggiffy();
+new Swaggiffy().setupExpress(app).swaggiffy();

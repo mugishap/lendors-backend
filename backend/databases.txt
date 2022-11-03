@@ -18,3 +18,52 @@ npx sequelize-cli seed:generate --name request
 ->Execute seed file
 npx sequelize-cli db:seed:all
 
+
+
+****************
+Create Customer Table
+**********************
+
+CREATE TABLE public."Customers"
+(
+    id character varying NOT NULL,
+    "updatedAt" integer,
+    "createdAt" integer,
+    names character varying NOT NULL,
+    email character varying NOT NULL,
+    address character varying NOT NULL,
+    joined character varying NOT NULL,
+    telephone character varying NOT NULL,
+    role character varying NOT NULL,
+    password character varying NOT NULL,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE IF EXISTS public."Customers"
+    OWNER to postgres;
+
+
+***********************
+Create car Table
+******************
+
+
+CREATE TABLE IF NOT EXISTS public."Cars"
+(
+    id character varying COLLATE pg_catalog."default" NOT NULL,
+    name character varying COLLATE pg_catalog."default" NOT NULL,
+    brand character varying COLLATE pg_catalog."default" NOT NULL,
+    "imageUrl" character varying COLLATE pg_catalog."default" NOT NULL,
+    added integer NOT NULL,
+    price integer NOT NULL,
+    "isBooked" boolean NOT NULL,
+    currency character varying COLLATE pg_catalog."default" NOT NULL,
+    "createdAt" integer,
+    "updatedAt" integer,
+    CONSTRAINT "Cars_pkey" PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Cars"
+    OWNER to postgres;

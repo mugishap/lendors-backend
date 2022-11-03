@@ -2,16 +2,20 @@ const Customer = require('../models/customer')
 const Car = require('../models/car')
 const { mailTo } = require('../utils/email')
 const dateFns = require('date-fns')
+const bcrypt = require('bcryptjs')
 
-exports.createAccount = (req, res) => {
+exports.createAccount = async (req, res) => {
 
     try {
-        const { name, email, address, telephone, password } = req.body
-        const customer = Customer.create({ name, email, address, telephone, password })
+        const { names, email, address, telephone, password } = req.body
+        const joined = Date.now()
+        const hashedPassword = await bcrypt.hash(password, 8)
+        const customer = await Customer().create({ names, email, role: 'user', joined, address, telephone, password: hashedPassword })
+        console.log(customer);
         return res.status(200).json({ message: "Account created successfully", customer })
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({ message: "Internal server error", error: error.message })
+        console.log(error.errors[0].message)
+        return res.status(500).json({ message: error.errors[0].message })
     }
 }
 
@@ -123,7 +127,7 @@ exports.updateCustomer = async (req, res) => {
         await customer.update({ name, email, address, telephone })
         if (!customer) return res.status(400).json({ message: "Customer doen't exist" })
         return res.status(200).json({ message: "Customer updated succesfully" })
-        
+
 
     } catch (error) {
         console.log(error)

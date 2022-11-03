@@ -1,21 +1,21 @@
 {
   "development": {
-    "username": "drive",
-    "password": "'drive.password'",
+    "username": "postgres",
+    "password": "postgres",
     "database": "drive",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "drive",
-    "password": "'drive.password'",
+    "username": "postgres",
+    "password": "postgres",
     "database": "drive",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "drive",
-    "password": "'drive.password'",
+    "username": "postgres",
+    "password": "postgres",
     "database": "drive",
     "host": "127.0.0.1",
     "dialect": "postgres"
