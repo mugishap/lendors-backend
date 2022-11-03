@@ -16,7 +16,7 @@ export default function CarProvider({ children }) {
     const [cars, setCars] = useState([]);
     const [car, setCar] = useState();
 
-    const baseURL = process.env.SERVER_URL;
+    const baseURL = import.meta.env.VITE_SERVER_URL;
 
     const getCars = async () => {
         const data = await fetch(`${baseURL}/car/all`);

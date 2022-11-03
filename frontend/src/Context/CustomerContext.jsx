@@ -13,7 +13,7 @@ export default function CustomerProvider({ children }) {
 
   const {user} = useAuth();
 
-  const baseURL = process.env.SERVER_URL;
+  const baseURL = import.meta.env.VITE_SERVER_URL;
 
   const newRequest = async ({ formData }) => {
     console.log(formData)

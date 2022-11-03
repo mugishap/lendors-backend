@@ -11,9 +11,9 @@ const { mailTo } = require('../utils/email')
 dotenv.config()
 
 cloudinary.config({
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-    cloud_name: process.env.CLOUDINARY_NAME
+    api_key: import.meta.envCLOUDINARY_API_KEY,
+    api_secret: import.meta.envCLOUDINARY_API_SECRET,
+    cloud_name: import.meta.envCLOUDINARY_NAME
 })
 
 
@@ -45,7 +45,7 @@ exports.loginAdmin = async (req, res) => {
         const isMatch = await bcrypt.compare(password, admin.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
 
-        const token = await jwt.sign({ adminId: admin.id, isAdmin: true }, process.env.JWT_SECRET_KEY, {
+        const token = await jwt.sign({ adminId: admin.id, isAdmin: true }, import.meta.envJWT_SECRET_KEY, {
             expiresIn: '24h'
         })
 

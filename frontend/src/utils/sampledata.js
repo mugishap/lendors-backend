@@ -677,6 +677,40 @@ export const customers = [
 
 ]
 
+
+export const backgrounds = [
+  {
+    url: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2Fyc3xlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60",
+    text: "Get your car serviced at your doorstep"
+  },
+
+  {
+    url: "https://images.unsplash.com/photo-1616422285623-13ff0162193c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNhcnN8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    text: "Rent a car on your terms"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2Fyc3xlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60",
+    text: "Drive your dream car"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1555353540-64580b51c258?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2Fyc3xlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60",
+    text: "We have the best cars for you"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2Fyc3xlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60",
+    text: "Pick your car from our showroom"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNhcnN8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    text: "Car for every budget"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1602777924012-f8664ffeed27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhcnN8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    text: "All cars are verified"
+  },
+
+]
+
 export const requests = [
   {
     id: v4(),

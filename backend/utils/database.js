@@ -2,9 +2,9 @@ const { Sequelize } = require('sequelize')
 const dotenv = require('dotenv')
 dotenv.config()
 
-const databaseUsername = process.env.DATABASE_USERNAME
-const databasePassword = process.env.DATABASE_PASSWORD
-const databaseName = process.env.DATABASE_NAME
+const databaseUsername = import.meta.envDATABASE_USERNAME
+const databasePassword = import.meta.envDATABASE_PASSWORD
+const databaseName = import.meta.envDATABASE_NAME
 
 // const sequelize = new Sequelize('', {})
 

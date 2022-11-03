@@ -52,15 +52,16 @@ const Login = () => {
     showPassword: false
   })
 
-  setTimeout(() => {
-    const random = Math.floor(Math.random() * backgrounds.length)
-    setBackground(backgrounds[random])
-  }, 30000)
 
 
   useEffect(() => {
     document.title = 'Login | Drive'
   }, [])
+
+    setTimeout(() => {
+      const random = Math.floor(Math.random() * backgrounds.length)
+      setBackground(backgrounds[random])
+    }, 5000)
 
   const { login } = useAuth()
   const { adminLogin } = useAdmin()

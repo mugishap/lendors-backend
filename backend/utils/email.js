@@ -9,8 +9,8 @@ const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     secure: false,
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
+        user: import.meta.envEMAIL_USER,
+        pass: import.meta.envEMAIL_PASSWORD
     }
 })
 
@@ -19,7 +19,7 @@ exports.mailTo = async (email, text, html, subject) => {
 
     try {
         const info = await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: import.meta.envEMAIL_USER,
             to: email,
             subject,
             text,

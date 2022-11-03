@@ -42,7 +42,7 @@ exports.loginCustomer = async (req, res) => {
         if (!user) return res.status(400).json({ message: "Email entered does not exist" })
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
-        const token = await jwt.sign({ userId: user.id, isAdmin: false }, process.env.JWT_SECRET_KEY, {
+        const token = await jwt.sign({ userId: user.id, isAdmin: false }, import.meta.envJWT_SECRET_KEY, {
             expiresIn: '24h'
         })
         const returnedUser = { ...user }

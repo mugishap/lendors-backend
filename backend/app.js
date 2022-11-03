@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const PORT = process.env.PORT || 80
+const PORT = import.meta.envPORT || 80
 const dotenv = require('dotenv')
 const { connectToDB } = require('./utils/database')
 const adminRouter = require('./routes/admin.route')

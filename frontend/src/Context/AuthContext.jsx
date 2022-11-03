@@ -12,7 +12,7 @@ export default function AuthProvider({ children }) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(undefined);
-  const baseURL = process.env.SERVER_URL;
+  const baseURL = import.meta.env.VITE_SERVER_URL;
 
   const decodeToken = async () => {
     const token = getCookie("token");

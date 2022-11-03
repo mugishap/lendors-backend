@@ -13,7 +13,7 @@ export default function AdminProvider({ children }) {
 
   const [admin, setAdmin] = useState([]);
 
-  const baseURL = process.env.SERVER_URL;
+  const baseURL = import.meta.env.VITE_SERVER_URL;
 
   const adminLogin = async ({ formData }) => {
     console.log(formData)
