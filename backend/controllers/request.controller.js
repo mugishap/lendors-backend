@@ -38,7 +38,62 @@ exports.grantRequest = async (req, res) => {
         if (!customer) return res.status(400).json({ messsage: "Customer does not exist" })
         console.log(customer);
         await request.update({ status: 'granted' })
-        await mailTo(customer.email, `Your car request for ${car.name} has been granted successfully.`, '<a>Click here to view request</a>', 'Car Request Grant ')
+        await mailTo(customer.email, '', `    
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+.div{
+  width:600px;
+  height:380px;
+  border-radius:10px;
+  background-color:#161616;
+  margin:auto;
+  display:flex;
+  color:white;
+  flex-direction:column;
+  background:linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),url('https://wallpapercave.com/wp/wp4318749.jpg');
+  background-position:center;
+  padding:20px;
+  background-size:contain;
+  background-repeat:no-reapeat;
+  font-family:"poppins";
+  font-weight:bold;
+  font-size:large;
+text-align:center;
+  }
+  .top{
+font-size:x-large;
+  }
+  .details{
+  display:flex;
+  flex-direction:column;
+  margin:3em 0;
+  align-items:start;
+  justify-content:start;
+  }
+  .button{
+  width:180px;
+  text-decoration:none;
+  padding:10px 2px;
+  background:red;
+  border-radius:10px;
+  border:none;
+  color:white;
+  }
+</style>
+<div class="div">
+  
+  <span class='top'>Hooray!!!</span><span>Your Car Request has been successfully granted.</span>
+  
+  <div class="details">
+  <span>Car Name: Tesla Model S<span><br>
+  <span>Brand: Tesla<span><br>
+    <span>Price: 230$/day<span><br>
+       <span>Starting: 5 Nov 2022<span><br>
+         <span>Ending: 25 Nov 2022<span><br>
+  </div>
+           <a href="http://lendrvercel.app/request/id" class="button">VIEW REQUEST</a>
+</div>
+        `, 'Car Request Grant ')
 
         return res.status(200).json({ message: "Request granted successfully", car, request })
     } catch (error) {
