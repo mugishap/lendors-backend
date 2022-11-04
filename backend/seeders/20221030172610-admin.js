@@ -3,10 +3,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-
     await queryInterface.bulkInsert('Admin', [{
       names: 'Mugisha Precieux',
-      email:'precieuxmugisha@gmail.com',
+      email:'admin@gmail.com',
       telephone:'+250782307144',
       joined:toString(Date.now()),
       role:'admin',

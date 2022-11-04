@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import jwtdecode from "jwt-decode";
-import { deleteAllCookies, getCookie } from "../utils/cookies";
+import { deleteAllCookies, getCookie, setCookie } from "../utils/cookies";
 
 let AuthContext = React.createContext({});
 
@@ -45,7 +45,7 @@ export default function AuthProvider({ children }) {
   };
 
   const signup = async ({ formData }) => {
-    const data = await fetch(`${baseURL}/auth/signup`, {
+    const data = await fetch(`${baseURL}/customer/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,6 +65,7 @@ export default function AuthProvider({ children }) {
       },
       body: JSON.stringify(formData),
     });
+    setCookie('drive_usr_token',data.token,7)
     setIsLoggedIn(true);
     return data;
   };

@@ -21,9 +21,11 @@ exports.createAdmin = async (req, res) => {
     try {
         const { names, address, email, telephone, password } = req.body
         const hashedPassword = await bcrypt.hash(password, 8);
-        const admin = Admin().create({
+        const joined = Date.now()
+        const admin = await Admin().create({
             names,
             address,
+            joined,
             email, telephone,
             password: hashedPassword
         })
@@ -45,9 +47,7 @@ exports.loginAdmin = async (req, res) => {
         const isMatch = await bcrypt.compare(password, admin.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
 
-        const token = await jwt.sign({ adminId: admin.id, isAdmin: true }, process.env.JWT_SECRET_KEY, {
-            expiresIn: '24h'
-        })
+        const token = await jwt.sign({ adminId: admin.id, isAdmin: true }, process.env.JWT_SECRET_KEY,{})
 
         return res.status(200).json({ message: "Logged in successfully", admin, token })
 

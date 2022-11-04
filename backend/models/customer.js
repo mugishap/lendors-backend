@@ -15,7 +15,7 @@ const Customer = sequelize.define('Customer', {
   password: { type: DataTypes.STRING, allowNull: false, }
 }, {});
 
-//registerSchema('Customer', Customer, { orm: 'sequelize' });
+//registerSchema('Customer', sequelize.createSchema('Customer'), { orm: 'sequelize' });
 
 module.exports = () => {
   return Customer;

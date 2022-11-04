@@ -13,7 +13,7 @@ const Request = sequelize.define('Request', {
   status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'pending' }
 }, {})
 
-//registerSchema('Request', Request, { orm: 'sequelize' });
+//registerSchema('Request', sequelize.createSchema('Request'), { orm: "sequelize" });
 
 module.exports = () => {
   return Request;

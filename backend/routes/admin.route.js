@@ -5,7 +5,7 @@ const adminRouter = express.Router()
 const { createAdmin, loginAdmin, deleteAdmin, updateAdmin, getAdminDetails } = require('./../controllers/admin.controller')
 const { registerDefinition } = require('swaggiffy')
 
-adminRouter.post('/new', [checkLoggedIn, checkAdminRole], createAdmin)
+adminRouter.post('/new',  createAdmin)
 adminRouter.post('/login', loginAdmin)
 adminRouter.delete('/delete/:id', [checkLoggedIn, checkAdminRole], deleteAdmin)
 adminRouter.patch('/udpate/:id', [checkLoggedIn, checkAdminRole], updateAdmin)

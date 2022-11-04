@@ -33,8 +33,8 @@ export function deleteAllCookies() {
     }
 }
 
-export const checkFileType = (inputID) => {
-    const fileInput = document.querySelector(`#${inputID}`)
+export const checkFileType = (inputId) => {
+    const fileInput = document.querySelector(`#${inputId}`)
     const filePath = fileInput.value
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.avif|\.gif)$/i;
 

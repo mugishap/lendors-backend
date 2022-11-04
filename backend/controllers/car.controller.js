@@ -1,4 +1,8 @@
 const Car = require('./../models/car')
+const cloudinary = require('cloudinary').v2
+const dotenv = require('dotenv')
+const { v4 } = require('uuid')
+dotenv.config()
 
 
 exports.getCars = async (req, res) => {
@@ -14,8 +18,10 @@ exports.getCars = async (req, res) => {
 
 exports.newCar = async (req, res) => {
     try {
-        const { name, price, currency, description } = req.body
-        const car = await Car().create({ name, price, currency, description })
+        const { name, price, brand,decription, currency, imageUrl, description } = req.body
+        const added = Date.now()
+        const id = `${v4()}-${Math.floor(Math.random() * 9999)}`
+        const car = await Car().create({ name, brand,description, price, id, imageUrl, added, currency, description })
         if (!car) return res.status(400).json({ message: "Car not created" })
         return res.status(201).json({ message: "Car created successfully", car })
     } catch (error) {
@@ -74,7 +80,7 @@ exports.getCarByQuery = async (req, res) => {
         const { query } = req.params
         const car = await Car().findAll({ where: { name: { [Op.like]: `%${query}%` } } })
         if (!car) return res.status(404).json({ message: "Car not found" })
-        return res.status(200).json({ message: "Car fetched successfully", car })
+        return res.status(200).json({ message: "Car fetched successfully", query,car })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: "Internal server error", error: error.message })

@@ -1,12 +1,13 @@
 const dotenv = require('dotenv')
 const nodemailer = require('nodemailer')
-
 dotenv.config()
 
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
+    pool:true,
     host: "smtp.gmail.com",
+    port:465,
     secure: false,
     auth: {
         user: process.env.EMAIL_USER,
@@ -14,6 +15,13 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+transporter.verify(function (error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Server is ready to take our messages");
+    }
+  });
 
 exports.mailTo = async (email, text, html, subject) => {
 
@@ -27,7 +35,7 @@ exports.mailTo = async (email, text, html, subject) => {
         })
         console.log(info.messageId);
         console.log("Testing email functionality");
-        return { message: "Email sent successfully", emailID: info.messageId, status: true }
+        return { message: "Email sent successfully", emailId: info.messageId, status: true }
     } catch (error) {
         console.log(error)
         return { message: "Unable to send email", status: false }

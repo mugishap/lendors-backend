@@ -21,6 +21,21 @@ exports.createAccount = async (req, res) => {
     }
 }
 
+exports.allCustomers = async (req, res) => {
+    try {
+        console.log("Accessing all customer route")
+        const customers = await Customer().findAll()
+        if (!customers) return res.status(200).json({ message: "Customers not found", customers })
+        return res.status(200).json({ message: "Customers fetched successfully", customers })
+    }
+    catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            message: "Internal server error", error: error.message
+        })
+    }
+}
+
 exports.getCustomer = async (req, res) => {
 
     try {
@@ -42,9 +57,7 @@ exports.loginCustomer = async (req, res) => {
         if (!user) return res.status(400).json({ message: "Email entered does not exist" })
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
-        const token = await jwt.sign({ userId: user.id, isAdmin: false }, process.env.JWT_SECRET_KEY, {
-            expiresIn: '24h'
-        })
+        const token = await jwt.sign({ userId: user.id, isAdmin: false }, process.env.JWT_SECRET_KEY,{})
         const returnedUser = { ...user }
         delete returnedUser.password
         return res.status(200).json({ message: "Logged in successfully", user: returnedUser, token })
@@ -57,20 +70,20 @@ exports.loginCustomer = async (req, res) => {
 
 exports.carRequest = async (req, res) => {
     try {
-        const { carID } = req.params
-        const { customerID } = req.user
+        const { carId } = req.params
+        const { customerId } = req.user
         const { startDate, endDate } = req.body
 
-        const user = await Customer().findOne({ where: { id: customerID } })
+        const user = await Customer().findOne({ where: { id: customerId } })
 
-        const car = await Car.findOne({ where: { id: carID } })
+        const car = await Car().findOne({ where: { id: carId } })
         if (!car) return res.status(400).json({ message: "Car not found" })
 
         const request = Request.create({
             startDate,
             endDate,
-            customerID,
-            carID
+            customerId,
+            carId
         })
 
         if (!request) return res.status(500).json({ message: "Unable to create car request" })
@@ -101,14 +114,6 @@ exports.searchCustomers = async (req, res) => {
 }
 
 
-exports.allCustomers = async (req, res) => {
-    try {
-
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({ message: "Internal server error", error: error.message })
-    }
-}
 
 exports.deleteCustomer = async (req, res) => {
     try {
