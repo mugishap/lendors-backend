@@ -5,7 +5,7 @@ const { sequelize } = require('../utils/database');
 
 const Request = sequelize.define('Request', {
   id: { type: DataTypes.STRING, primaryKey: true, allowNull: false },
-  customerId: { type: DataTypes.STRING, allowNull: false },
+  userId: { type: DataTypes.STRING, allowNull: false },
   carId: { type: DataTypes.STRING, allowNull: false },
   startDate: { type: DataTypes.INTEGER, allowNull: false },
   endDate: { type: DataTypes.INTEGER, allowNull: false },

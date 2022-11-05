@@ -4,10 +4,9 @@ const app = express()
 const PORT = process.env.PORT || 80
 const dotenv = require('dotenv')
 const { connectToDB } = require('./utils/database')
-const adminRouter = require('./routes/admin.route')
 const { Swaggiffy } = require('swaggiffy')
 const carRouter = require('./routes/car.route')
-const customerRouter = require('./routes/customer.route')
+const userRouter = require('./routes/user.route')
 const cors = require('cors')
 const requestRouter = require('./routes/request.route')
 
@@ -18,10 +17,9 @@ app.use(bodyParser.json({ limit: '5mb' }))
 connectToDB()
 
 app.use(cors())
-app.use('/admin', adminRouter)
 app.use('/request', requestRouter)
 app.use('/car', carRouter)
-app.use('/customer', customerRouter)
+app.use('/user', userRouter)
 app.get('/', (req, res) => {
     return res.status(200).json({ message: "Welcome to the drive server" })
 })

@@ -1,4 +1,4 @@
-const Customer = require('../models/customer')
+const User = require('../models/user')
 const Car = require('../models/car')
 const { mailTo } = require('../utils/email')
 const dateFns = require('date-fns')
@@ -12,21 +12,21 @@ exports.createAccount = async (req, res) => {
         const { names, email, address, telephone, password } = req.body
         const joined = Date.now()
         const hashedPassword = await bcrypt.hash(password, 8)
-        const customer = await Customer().create({ names, email, role: 'user', joined, address, telephone, password: hashedPassword })
-        console.log(customer);
-        return res.status(200).json({ message: "Account created successfully", customer })
+        const user = await User().create({ names, email, role: 'user', joined, address, telephone, password: hashedPassword })
+        console.log(user);
+        return res.status(200).json({ message: "Account created successfully", user })
     } catch (error) {
         console.log(error.errors[0].message)
         return res.status(500).json({ message: error.errors[0].message })
     }
 }
 
-exports.allCustomers = async (req, res) => {
+exports.allUsers = async (req, res) => {
     try {
-        console.log("Accessing all customer route")
-        const customers = await Customer().findAll()
-        if (!customers) return res.status(200).json({ message: "Customers not found", customers })
-        return res.status(200).json({ message: "Customers fetched successfully", customers })
+        console.log("Accessing all user route")
+        const users = await User().findAll()
+        if (!users) return res.status(200).json({ message: "Users not found", users })
+        return res.status(200).json({ message: "Users fetched successfully", users })
     }
     catch (error) {
         console.log(error)
@@ -36,11 +36,11 @@ exports.allCustomers = async (req, res) => {
     }
 }
 
-exports.getCustomer = async (req, res) => {
+exports.getUser = async (req, res) => {
 
     try {
         const { userId } = req.user
-        const user = await Customer().findOne({ where: { id: userId } })
+        const user = await User().findOne({ where: { id: userId } })
         if (!user) return res.status(500).json({ message: "Error getting user data" })
         return res.status(200).json({ message: "Getting usser successfull", user })
     } catch (error) {
@@ -50,14 +50,15 @@ exports.getCustomer = async (req, res) => {
 
 }
 
-exports.loginCustomer = async (req, res) => {
+exports.loginUser = async (req, res) => {
     try {
         const { email, password } = req.body
-        const user = await (await Customer().findOne({ email })).get({ plain: true })
+        const user = await (await User().findOne({ email })).get({ plain: true })
         if (!user) return res.status(400).json({ message: "Email entered does not exist" })
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })
-        const token = await jwt.sign({ userId: user.id, isAdmin: false }, process.env.JWT_SECRET_KEY,{})
+        const isAdmin = user.role === 'admin' ? true : false
+        const token = await jwt.sign({ userId: user.id, isAdmin }, process.env.JWT_SECRET_KEY, {})
         const returnedUser = { ...user }
         delete returnedUser.password
         return res.status(200).json({ message: "Logged in successfully", user: returnedUser, token })
@@ -71,10 +72,10 @@ exports.loginCustomer = async (req, res) => {
 exports.carRequest = async (req, res) => {
     try {
         const { carId } = req.params
-        const { customerId } = req.user
+        const { userId } = req.user
         const { startDate, endDate } = req.body
 
-        const user = await Customer().findOne({ where: { id: customerId } })
+        const user = await User().findOne({ where: { id: userId } })
 
         const car = await Car().findOne({ where: { id: carId } })
         if (!car) return res.status(400).json({ message: "Car not found" })
@@ -82,7 +83,7 @@ exports.carRequest = async (req, res) => {
         const request = Request.create({
             startDate,
             endDate,
-            customerId,
+            userId,
             carId
         })
 
@@ -104,7 +105,7 @@ exports.carRequest = async (req, res) => {
     }
 }
 
-exports.searchCustomers = async (req, res) => {
+exports.searchUsers = async (req, res) => {
     try {
         const { query } = req.params
     } catch (error) {
@@ -115,24 +116,24 @@ exports.searchCustomers = async (req, res) => {
 
 
 
-exports.deleteCustomer = async (req, res) => {
+exports.deleteUser = async (req, res) => {
     try {
-        const { customerId } = req.body
+        const { userId } = req.body
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: "Internal server error", error: error.message })
     }
 }
 
-exports.updateCustomer = async (req, res) => {
+exports.updateUser = async (req, res) => {
     try {
-        const { customerId } = req.params
+        const { userId } = req.params
         const { name, email, address, telephone } = req.body
 
-        const customer = Customer().findOne({ where: { id: customerId } })
-        await customer.update({ name, email, address, telephone })
-        if (!customer) return res.status(400).json({ message: "Customer doen't exist" })
-        return res.status(200).json({ message: "Customer updated succesfully" })
+        const user = User().findOne({ where: { id: userId } })
+        await user.update({ name, email, address, telephone })
+        if (!user) return res.status(400).json({ message: "User doen't exist" })
+        return res.status(200).json({ message: "User updated succesfully" })
 
 
     } catch (error) {
