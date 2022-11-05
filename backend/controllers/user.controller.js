@@ -5,11 +5,14 @@ const dateFns = require('date-fns')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
+const { createUserSchemaValidation, LoginSchemaValidation } = require('../validations/schema.validations')
 dotenv.config()
 
 exports.createAccount = async (req, res) => {
     try {
         const { names, email, address, telephone, password } = req.body
+        const { error, value } = await createUserSchemaValidation.validate({ names, email, address, telephone, password })
+        if (error) return res.status(400).json({ message: "Validation error", error: error.message })
         const joined = Date.now()
         const hashedPassword = await bcrypt.hash(password, 8)
         const user = await User().create({ names, email, role: 'user', joined, address, telephone, password: hashedPassword })
@@ -53,7 +56,10 @@ exports.getUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         const { email, password } = req.body
-        const user = await (await User().findOne({ email })).get({ plain: true })
+        console.log(req.body)
+        const { error, values } = await LoginSchemaValidation.validate({ email, password })
+        if (error) return res.status(400).json({ message: "Validation error", error: error.message })
+        const user = await (await User().findOne({ where: { email } })).get({ plain: true })
         if (!user) return res.status(400).json({ message: "Email entered does not exist" })
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ message: "Wrong password" })

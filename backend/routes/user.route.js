@@ -8,7 +8,7 @@ const userRouter = express.Router()
 userRouter.post('/new', createAccount)
 userRouter.post('/login', loginUser)
 userRouter.delete('/delete', [checkLoggedIn], deleteUser)
-userRouter.patch('/update', [checkLoggedIn], updateUser)
+userRouter.put('/update', [checkLoggedIn], updateUser)
 userRouter.get('/details', [checkLoggedIn], getUser)
 userRouter.get('/all', [checkLoggedIn, checkAdminRole], allUsers)
 

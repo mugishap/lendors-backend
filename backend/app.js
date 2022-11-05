@@ -9,10 +9,10 @@ const carRouter = require('./routes/car.route')
 const userRouter = require('./routes/user.route')
 const cors = require('cors')
 const requestRouter = require('./routes/request.route')
-
+const corsOptions = require('./config/cors/index')
 dotenv.config()
 
-app.use(bodyParser.json({ limit: '5mb' }))
+app.use(bodyParser.json({ limit: '1mb' }))
 
 connectToDB()
 
@@ -29,9 +29,9 @@ app.listen(PORT, (err) => {
     console.log(`Server UP on PORT ${PORT}`)
 })
 
-app.use((req, res, next) => {
-    res.status(404).json({
-        message: "Route not found"
-    })
-})
-// new Swaggiffy().setupExpress(app).swaggiffy();
+// app.use((req, res, next) => {
+//     return req.url === '/docs/' ? null : res.status(404).json({
+//         message: "Route not found"
+//     })
+// })
+new Swaggiffy().setupExpress(app).swaggiffy();
