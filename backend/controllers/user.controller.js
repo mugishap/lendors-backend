@@ -121,7 +121,6 @@ exports.searchUsers = async (req, res) => {
 }
 
 
-
 exports.deleteUser = async (req, res) => {
     try {
         const { userId } = req.body
@@ -134,14 +133,13 @@ exports.deleteUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
     try {
         const { userId } = req.params
-        const { name, email, address, telephone } = req.body
-
+        const { name, email, address, imageUrl, telephone } = req.body
+        const { error, value } = createUserSchemaValidation.validate({ name, email, address, imageUrl, telephone })
+        if (error) return res.status(400).json({ message: "Validation error", error: error.message })
         const user = User().findOne({ where: { id: userId } })
         await user.update({ name, email, address, telephone })
         if (!user) return res.status(400).json({ message: "User doen't exist" })
         return res.status(200).json({ message: "User updated succesfully" })
-
-
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: "Internal server error", error: error.message })
