@@ -1,15 +1,14 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://res.cloudinary.com/precieux/image/upload/v1667273757/logo_rs0i6i.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Drive</h3>
+<h3 align="center">Lendors</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mugishap/drive/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mugishap/drive/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mugishap/lendors-backend/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mugishap/lendors-backend/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -34,7 +33,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Drive is a web app created for the purpose of helping people rent cars easily and sinplify the management of cars and car company assets
+Lendors is a web app created for the purpose of helping people rent cars easily and sinplify the management of cars and car company assets
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -55,7 +54,7 @@ A step by step series of examples that tell you how to get a development env run
 Say what the step will be
 
 ```
-git clone https://github.com/mugishap/drive.git
+git clone https://github.com/mugishap/lendors-backend.git
 ```
 
 Next
