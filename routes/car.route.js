@@ -12,6 +12,7 @@ carRouter.delete('/delete/:carId', [checkLoggedIn, checkAdminRole], deleteCar)
 carRouter.put('/update/:carId', [checkLoggedIn, checkAdminRole], updateCar)
 carRouter.get('/details/:carId', getCarById)
 carRouter.get('/all', getCars)
+
 carRouter.get('/search/:query', getCarByQuery)
 
 registerDefinition(carRouter, { tags: 'Cars', mappedSchema: 'Car', basePath: '/car' });
